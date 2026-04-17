@@ -330,14 +330,3 @@ document.addEventListener('DOMContentLoaded', () => {
     loadSavedPhotos();
     initProjectPhotoUpload();
 });
-
-// WELCOME MODAL
-window.addEventListener('load', () => setTimeout(() => document.getElementById('welcomeModal').classList.add('open'), 600));
-function closeWelcome() {
-    const m = document.getElementById('welcomeModal');
-    m.style.opacity = '0';
-    setTimeout(() => { m.style.display = 'none'; }, 400);
-}
-document.getElementById('welcomeModal').addEventListener('click', function (e) {
-    if (e.target === this) closeWelcome();
-});
