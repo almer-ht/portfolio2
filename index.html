@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Fakhri Almer Dzaky - Web Dev | UI/UX | Hardware</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- WELCOME MODAL -->
+    <div class="welcome-overlay" id="welcomeModal">
+        <div class="welcome-modal">
+            <div class="welcome-icon">👋</div>
+            <h2>Halo, Selamat Datang! <span class="wave">🎉</span></h2>
+            <p class="subtitle">
+                Selamat datang di portofolio <span>Muhammad Fakhri Almer Dzaky</span>.<br>
+                Explore projek, keahlian, dan karya-karya keren yang sudah saya buat.<br><br>
+                <span style="font-size:.82rem;color:#475569;">Web Developer &bull; UI/UX Designer &bull; Hardware Enthusiast</span>
+            </p>
+            <button class="btn-welcome" onclick="closeWelcome()">
+                <i class="fas fa-rocket" style="margin-right:8px"></i> Ayo Mulai Explore!
+            </button>
+            <div class="welcome-dots">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- HIDDEN FILE INPUTS -->
+    <input type="file" id="photoInput" accept="image/*" onchange="handlePhoto(event,'heroPhoto','heroPH')">
+    <input type="file" id="photoInput2" accept="image/*" onchange="handlePhoto(event,'tentangPhoto','tentangPH')">
+
+    <!-- SCROLL TOP -->
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i
+            class="fas fa-arrow-up"></i></button>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo"><i class="fas fa-mountain"></i><span>Fakhri<span
+                        class="accent">Dev</span></span></a>
+            <div class="nav-toggle" id="navToggle"><span class="bar"></span><span class="bar"></span><span
+                    class="bar"></span></div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#tentang" class="nav-link">Tentang</a></li>
+                <li><a href="#keahlian" class="nav-link">Keahlian</a></li>
+                <li><a href="#projek" class="nav-link">Projek</a></li>
+                <li><a href="#contact" class="nav-link">Kontak</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge"><i class="fas fa-circle"
+                        style="font-size:8px;animation:blink 1.5s infinite"></i> SMK Metland School &bull; Kelas 11 PPLG
+                    1</div>
+                <h1 class="hero-title"><span class="gradient-text">Muhammad Fakhri</span><br>Almer Dzaky</h1>
+                <p class="hero-desc">Web Developer &bull; UI/UX Designer &bull; Hardware Enthusiast<br><span
+                        id="typingSpan">Membangun pengalaman digital yang keren </span></p>
+                <div class="hero-buttons">
+                    <a href="#projek" class="btn btn-primary"><i class="fas fa-eye"></i> Lihat Projek</a>
+                    <a href="#contact" class="btn btn-secondary"><i class="fas fa-message"></i> Hubungi Saya</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-wrapper">
+                    <div class="photo-circle" onclick="document.getElementById('photoInput').click()"
+                        title="Klik untuk upload foto">
+                        <img id="heroPhoto" src="" alt="Foto Profil" style="display:none">
+                        <div id="heroPH" style="display:flex;flex-direction:column;align-items:center;gap:10px">
+                            <i class="fas fa-user photo-placeholder-icon"></i>
+                            <span class="photo-hint">Klik untuk upload foto</span>
+                        </div>
+                        <div class="upload-overlay">
+                            <i class="fas fa-camera"></i>
+                            <span>Ganti Foto</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TENTANG -->
+    <section id="tentang" class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Tentang Saya</h2>
+                <p class="section-subtitle">Apa yang bikin saya excited ngoding setiap hari</p>
+            </div>
+            <div class="tentang-grid">
+                <div class="tentang-foto glass-card fade-in">
+                    <div>
+                        <div class="tentang-foto-circle" onclick="document.getElementById('photoInput2').click()"
+                            title="Klik untuk upload foto">
+                            <img id="tentangPhoto" src="" alt="Foto" style="display:none">
+                            <div id="tentangPH" class="tf-placeholder">
+                                <i class="fas fa-camera"></i>
+                                <span>Upload foto</span>
+                            </div>
+                            <div class="upload-overlay">
+                                <i class="fas fa-camera"></i>
+                                <span>Ganti</span>
+                            </div>
+                        </div>
+                        <p style="text-align:center;font-size:.72rem;color:#475569;margin-top:.8rem">Klik untuk upload
+                            foto profil</p>
+                    </div>
+                </div>
+                <div class="tentang-content glass-card fade-in fade-in-delay-1">
+                    <h3>Halo! Saya Fakhri 🚀</h3>
+                    <p>Siswa kelas 11 PPLG 1 di <strong>SMK Metland School</strong>. Suka banget belajar hal baru
+                        tentang <strong>web development</strong>, <strong>UI/UX design</strong>, dan <strong>hardware komputer</strong>.</p>
+                    <p>Portofolio ini saya bikin sendiri dari nol! Selain ngoding, saya juga suka:</p>
+                    <ul class="hobi-list">
+                        <li><i class="fas fa-shuttle-space"></i> Rakit PC gaming</li>
+                        <li><i class="fas fa-paint-brush"></i> Desain di Canva & Figma</li>
+                        <li><i class="fas fa-file-word"></i> Bikin dokumen rapi di Word</li>
+                        <li><i class="fas fa-microchip"></i> Troubleshooting hardware</li>
+                        <li><i class="fas fa-music"></i> Dengerin musik sambil coding</li>
+                        <li><i class="fas fa-person-running"></i> Main badminton</li>
+                    </ul>
+                    <div class="stats">
+                        <div class="stat"><span class="stat-number">10+</span><span>Projek Selesai</span></div>
+                        <div class="stat"><span class="stat-number">100%</span><span>Otodidak</span></div>
+                        <div class="stat"><span class="stat-number">24/7</span><span>Siap Belajar</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEAHLIAN -->
+    <section id="keahlian" class="section bg-dark">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Keahlian Saya</h2>
+                <p class="section-subtitle">Skill yang saya kuasai dan pakai setiap hari</p>
+            </div>
+            <div class="keahlian-grid">
+                <div class="skill-card glass-card fade-in">
+                    <div class="skill-icon"><i class="fab fa-html5"></i></div>
+                    <h3>Web Development</h3>
+                    <p>HTML5, CSS3, JavaScript. Bisa bikin website responsif yang rapi di HP dan PC.</p>
+                    <div class="skill-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+                </div>
+                <div class="skill-card glass-card fade-in fade-in-delay-1">
+                    <div class="skill-icon"><i class="fas fa-paint-brush"></i></div>
+                    <h3>UI/UX Design</h3>
+                    <p>Desain modern pakai Canva & Figma. Bikin tampilan yang enak dilihat dan nyaman dipakai.</p>
+                    <div class="skill-tags"><span>Figma</span><span>Canva</span><span>Adobe XD</span></div>
+                </div>
+                <div class="skill-card glass-card fade-in fade-in-delay-2">
+                    <div class="skill-icon"><i class="fas fa-microchip"></i></div>
+                    <h3>Hardware & Tools</h3>
+                    <p>Aktif rakit PC, paham komponen komputer, dan troubleshooting hardware dengan baik.</p>
+                    <div class="skill-tags"><span>PC Building</span><span>MS Word</span><span>Troubleshooting</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJEK -->
+    <section id="projek" class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Projek Terbaik</h2>
+                <p class="section-subtitle">Hasil kerja keras saya yang bisa kamu coba langsung</p>
+            </div>
+            <div class="projek-grid">
+                <div class="projek-kartu glass-card fade-in">
+                    <div class="projek-gambar"><i class="fas fa-image"></i>
+                        <div class="projek-label">Design Canva</div>
+                    </div>
+                    <div class="projek-teks">
+                        <h3>Desain Kreatif Canva</h3>
+                        <p>Poster, logo, dan desain promosi pakai Canva Pro. Full color theory & typography.</p>
+                        <div class="projek-tech"><span>Canva</span><span>Design</span><span>Branding</span></div>
+                        <div class="projek-links"><a href="#" class="btn-link"><i class="fas fa-eye"></i> Lihat</a><a
+                                href="#" class="btn-link"><i class="fas fa-download"></i> Download</a></div>
+                    </div>
+                </div>
+                <div class="projek-kartu glass-card fade-in fade-in-delay-1">
+                    <div class="projek-gambar"><i class="fas fa-shopping-cart"></i>
+                        <div class="projek-label">Shopee Clone</div>
+                    </div>
+                    <div class="projek-teks">
+                        <h3>Website Shopee Sederhana</h3>
+                        <p>Layout e-commerce lengkap dengan product grid, cart, dan checkout. Fully responsive!</p>
+                        <div class="projek-tech"><span>HTML</span><span>CSS Grid</span><span>Flexbox</span></div>
+                        <div class="projek-links"><a href="#" class="btn-link"><i class="fas fa-external-link-alt"></i>
+                                Live Demo</a><a href="#" class="btn-link"><i class="fab fa-github"></i> Source</a></div>
+                    </div>
+                </div>
+                <div class="projek-kartu glass-card fade-in fade-in-delay-2">
+                    <div class="projek-gambar"><i class="fas fa-bell"></i>
+                        <div class="projek-label">School Bell</div>
+                    </div>
+                    <div class="projek-teks">
+                        <h3>Sistem Bell Sekolah Digital</h3>
+                        <p>Bell otomatis dengan timer dan suara custom. Bisa set jadwal pelajaran otomatis.</p>
+                        <div class="projek-tech"><span>JavaScript</span><span>Timer API</span><span>Audio</span></div>
+                        <div class="projek-links"><a href="#" class="btn-link"><i class="fas fa-play"></i> Demo</a><a
+                                href="#" class="btn-link"><i class="fas fa-code"></i> Code</a></div>
+                    </div>
+                </div>
+                <div class="projek-kartu glass-card fade-in fade-in-delay-3">
+                    <div class="projek-gambar"><i class="fas fa-laptop"></i>
+                        <div class="projek-label">Electronics</div>
+                    </div>
+                    <div class="projek-teks">
+                        <h3>Toko Elektronik Online</h3>
+                        <p>Website jualan peralatan elektronik dengan filter harga, search, dan detail produk.</p>
+                        <div class="projek-tech"><span>HTML5</span><span>CSS3</span><span>Responsive</span></div>
+                        <div class="projek-links"><a href="#" class="btn-link"><i class="fas fa-external-link-alt"></i>
+                                Live</a><a href="#" class="btn-link"><i class="fab fa-github"></i> GitHub</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Hubungi Saya</h2>
+                <p class="section-subtitle">Ada projek seru? Mari kita ngobrol dan wujudkan bareng!</p>
+            </div>
+            <div class="contact-wrapper">
+                <!-- Info Cards -->
+                <div class="contact-info fade-in">
+                    <div class="contact-intro glass-card">
+                        <div class="contact-intro-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>Siap Berkolaborasi!</h3>
+                        <p>Saya terbuka untuk projek website, desain UI/UX, dan kebutuhan hardware. Jangan ragu untuk reach out ya!</p>
+                        <div class="availability-badge">
+                            <span class="avail-dot"></span>
+                            <span>Tersedia untuk projek baru</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-cards">
+                        <a href="mailto:fakhri@example.com" class="contact-card glass-card fade-in fade-in-delay-1">
+                            <div class="cc-icon email-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="cc-text">
+                                <span class="cc-label">Email</span>
+                                <span class="cc-value">fakhri@example.com</span>
+                            </div>
+                            <i class="fas fa-arrow-right cc-arrow"></i>
+                        </a>
+                        <a href="https://wa.me/628123456789" target="_blank" class="contact-card glass-card fade-in fade-in-delay-2">
+                            <div class="cc-icon wa-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="cc-text">
+                                <span class="cc-label">WhatsApp</span>
+                                <span class="cc-value">+62 812-3456-7890</span>
+                            </div>
+                            <i class="fas fa-arrow-right cc-arrow"></i>
+                        </a>
+                        <a href="#" class="contact-card glass-card fade-in fade-in-delay-3">
+                            <div class="cc-icon loc-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="cc-text">
+                                <span class="cc-label">Lokasi</span>
+                                <span class="cc-value">SMK Metland School</span>
+                            </div>
+                            <i class="fas fa-arrow-right cc-arrow"></i>
+                        </a>
+                    </div>
+
+                    <!-- Social Media -->
+                    <div class="social-section fade-in fade-in-delay-2">
+                        <p class="social-label">Temukan saya di:</p>
+                        <div class="social-links-new">
+                            <a href="https://instagram.com/YOUR_USERNAME" target="_blank" class="soc-btn insta">
+                                <i class="fab fa-instagram"></i>
+                                <span>Instagram</span>
+                            </a>
+                            <a href="https://tiktok.com/@YOUR_USERNAME" target="_blank" class="soc-btn tiktok">
+                                <i class="fab fa-tiktok"></i>
+                                <span>TikTok</span>
+                            </a>
+                            <a href="https://facebook.com/YOUR_USERNAME" target="_blank" class="soc-btn fb">
+                                <i class="fab fa-facebook-f"></i>
+                                <span>Facebook</span>
+                            </a>
+                            <a href="https://github.com/YOUR_USERNAME" target="_blank" class="soc-btn gh">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form-wrap glass-card fade-in fade-in-delay-1">
+                    <h3 class="form-title"><i class="fas fa-paper-plane"></i> Kirim Pesan</h3>
+                    <p class="form-subtitle">Isi form di bawah, saya akan balas secepat mungkin!</p>
+                    <div class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nama Lengkap</label>
+                                <div class="input-wrap">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" placeholder="Nama kamu...">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <div class="input-wrap">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="email" placeholder="email@kamu.com">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Subjek</label>
+                            <div class="input-wrap">
+                                <i class="fas fa-tag"></i>
+                                <input type="text" placeholder="Tentang apa nih?">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Kategori Projek</label>
+                            <div class="project-type-btns">
+                                <button class="type-btn active" onclick="selectType(this)"><i class="fab fa-html5"></i> Web Dev</button>
+                                <button class="type-btn" onclick="selectType(this)"><i class="fas fa-paint-brush"></i> UI/UX</button>
+                                <button class="type-btn" onclick="selectType(this)"><i class="fas fa-microchip"></i> Hardware</button>
+                                <button class="type-btn" onclick="selectType(this)"><i class="fas fa-ellipsis"></i> Lainnya</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Pesan</label>
+                            <div class="textarea-wrap">
+                                <textarea placeholder="Ceritain projek kamu di sini... " rows="5"></textarea>
+                            </div>
+                        </div>
+                        <button class="btn-send" onclick="sendMessage()">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Kirim Pesan</span>
+                        </button>
+                        <div class="send-note"><i class="fas fa-shield-halved"></i> Pesan kamu aman, tidak akan di-spam!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-bottom-bar">
+        <div class="container">
+            <p>&copy; 2025 <span class="accent">FakhriDev</span>. Dibuat dengan  baik dari nol.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+    function selectType(btn) {
+        document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+    }
+    function sendMessage() {
+        const btn = document.querySelector('.btn-send');
+        btn.innerHTML = '<i class="fas fa-check"></i> <span>Terkirim!</span>';
+        btn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+        setTimeout(() => {
+            btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span>Kirim Pesan</span>';
+            btn.style.background = '';
+        }, 3000);
+    }
+    </script>
+</body>
+</html>
