@@ -12,35 +12,14 @@
 </head>
 
 <body>
-
-    <!-- WELCOME MODAL -->
-    <div class="welcome-overlay" id="welcomeModal">
-        <div class="welcome-modal">
-            <div class="welcome-icon">👋</div>
-            <h2>Halo, Selamat Datang! <span class="wave">🎉</span></h2>
-            <p class="subtitle">
-                Selamat datang di portofolio <span>Muhammad Fakhri Almer Dzaky</span>.<br>
-                Explore projek, keahlian, dan karya-karya keren yang sudah saya buat.<br><br>
-                <span style="font-size:.82rem;color:#475569;">Web Developer &bull; UI/UX Designer &bull; Hardware Enthusiast</span>
-            </p>
-            <button class="btn-welcome" onclick="closeWelcome()">
-                <i class="fas fa-rocket" style="margin-right:8px"></i> Ayo Mulai Explore!
-            </button>
-            <div class="welcome-dots">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-    </div>
-
     <!-- HIDDEN FILE INPUTS (hero & tentang) -->
     <!--
         Perubahan: tambahkan storageKey sebagai argumen ke-4 pada handlePhoto()
         supaya foto disimpan ke localStorage dengan kunci yang berbeda.
     -->
-    <input type="file" id="photoInput"  accept="image/*"
-           onchange="handlePhoto(event,'heroPhoto','heroPH','photo_hero')">
+    <input type="file" id="photoInput" accept="image/*" onchange="handlePhoto(event,'heroPhoto','heroPH','photo_hero')">
     <input type="file" id="photoInput2" accept="image/*"
-           onchange="handlePhoto(event,'tentangPhoto','tentangPH','photo_tentang')">
+        onchange="handlePhoto(event,'tentangPhoto','tentangPH','photo_tentang')">
 
     <!-- SCROLL TOP -->
     <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
@@ -58,11 +37,11 @@
                 <span class="bar"></span><span class="bar"></span><span class="bar"></span>
             </div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#home"      class="nav-link active">Home</a></li>
-                <li><a href="#tentang"   class="nav-link">Tentang</a></li>
-                <li><a href="#keahlian"  class="nav-link">Keahlian</a></li>
-                <li><a href="#projek"    class="nav-link">Projek</a></li>
-                <li><a href="#contact"   class="nav-link">Kontak</a></li>
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#tentang" class="nav-link">Tentang</a></li>
+                <li><a href="#keahlian" class="nav-link">Keahlian</a></li>
+                <li><a href="#projek" class="nav-link">Projek</a></li>
+                <li><a href="#contact" class="nav-link">Kontak</a></li>
             </ul>
         </div>
     </nav>
@@ -89,9 +68,8 @@
             </div>
             <div class="hero-image">
                 <div class="image-wrapper">
-                    <div class="photo-circle"
-                         onclick="document.getElementById('photoInput').click()"
-                         title="Klik untuk upload foto">
+                    <div class="photo-circle" onclick="document.getElementById('photoInput').click()"
+                        title="Klik untuk upload foto">
                         <img id="heroPhoto" src="" alt="Foto Profil" style="display:none">
                         <div id="heroPH" style="display:flex;flex-direction:column;align-items:center;gap:10px">
                             <i class="fas fa-user photo-placeholder-icon"></i>
@@ -117,9 +95,8 @@
             <div class="tentang-grid">
                 <div class="tentang-foto glass-card fade-in">
                     <div>
-                        <div class="tentang-foto-circle"
-                             onclick="document.getElementById('photoInput2').click()"
-                             title="Klik untuk upload foto">
+                        <div class="tentang-foto-circle" onclick="document.getElementById('photoInput2').click()"
+                            title="Klik untuk upload foto">
                             <img id="tentangPhoto" src="" alt="Foto" style="display:none">
                             <div id="tentangPH" class="tf-placeholder">
                                 <i class="fas fa-camera"></i>
@@ -139,7 +116,8 @@
                     <h3>Halo! Saya Fakhri 🚀</h3>
                     <p>Siswa kelas 11 PPLG 1 di <strong>SMK Metland School</strong>. Suka banget belajar hal baru
                         tentang <strong>web development</strong>, <strong>UI/UX design</strong>, dan
-                        <strong>hardware komputer</strong>.</p>
+                        <strong>hardware komputer</strong>.
+                    </p>
                     <p>Portofolio ini saya bikin sendiri dari nol! Selain ngoding, saya juga suka:</p>
                     <ul class="hobi-list">
                         <li><i class="fas fa-shuttle-space"></i> Rakit PC gaming</li>
@@ -291,7 +269,8 @@
                             <i class="fas fa-rocket"></i>
                         </div>
                         <h3>Siap Berkolaborasi!</h3>
-                        <p>Saya terbuka untuk projek website, desain UI/UX, dan kebutuhan hardware. Jangan ragu untuk reach out ya!</p>
+                        <p>Saya terbuka untuk projek website, desain UI/UX, dan kebutuhan hardware. Jangan ragu untuk
+                            reach out ya!</p>
                         <div class="availability-badge">
                             <span class="avail-dot"></span>
                             <span>Tersedia untuk projek baru</span>
@@ -307,7 +286,8 @@
                             </div>
                             <i class="fas fa-arrow-right cc-arrow"></i>
                         </a>
-                        <a href="https://wa.me/628123456789" target="_blank" class="contact-card glass-card fade-in fade-in-delay-2">
+                        <a href="https://wa.me/628123456789" target="_blank"
+                            class="contact-card glass-card fade-in fade-in-delay-2">
                             <div class="cc-icon wa-icon"><i class="fab fa-whatsapp"></i></div>
                             <div class="cc-text">
                                 <span class="cc-label">WhatsApp</span>
@@ -418,19 +398,20 @@
 
     <script src="main.js"></script>
     <script>
-    function selectType(btn) {
-        document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-    }
-    function sendMessage() {
-        const btn = document.querySelector('.btn-send');
-        btn.innerHTML = '<i class="fas fa-check"></i> <span>Terkirim!</span>';
-        btn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
-        setTimeout(() => {
-            btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span>Kirim Pesan</span>';
-            btn.style.background = '';
-        }, 3000);
-    }
+        function selectType(btn) {
+            document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+        function sendMessage() {
+            const btn = document.querySelector('.btn-send');
+            btn.innerHTML = '<i class="fas fa-check"></i> <span>Terkirim!</span>';
+            btn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span>Kirim Pesan</span>';
+                btn.style.background = '';
+            }, 3000);
+        }
     </script>
 </body>
+
 </html>
