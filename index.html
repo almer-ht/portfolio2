@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,27 +32,37 @@
         </div>
     </div>
 
-    <!-- HIDDEN FILE INPUTS -->
-    <input type="file" id="photoInput" accept="image/*" onchange="handlePhoto(event,'heroPhoto','heroPH')">
-    <input type="file" id="photoInput2" accept="image/*" onchange="handlePhoto(event,'tentangPhoto','tentangPH')">
+    <!-- HIDDEN FILE INPUTS (hero & tentang) -->
+    <!--
+        Perubahan: tambahkan storageKey sebagai argumen ke-4 pada handlePhoto()
+        supaya foto disimpan ke localStorage dengan kunci yang berbeda.
+    -->
+    <input type="file" id="photoInput"  accept="image/*"
+           onchange="handlePhoto(event,'heroPhoto','heroPH','photo_hero')">
+    <input type="file" id="photoInput2" accept="image/*"
+           onchange="handlePhoto(event,'tentangPhoto','tentangPH','photo_tentang')">
 
     <!-- SCROLL TOP -->
-    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i
-            class="fas fa-arrow-up"></i></button>
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <!-- NAVBAR -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="#home" class="nav-logo"><i class="fas fa-mountain"></i><span>Porto<span
-                        class="accent">Dev</span></span></a>
-            <div class="nav-toggle" id="navToggle"><span class="bar"></span><span class="bar"></span><span
-                    class="bar"></span></div>
+            <a href="#home" class="nav-logo">
+                <i class="fas fa-mountain"></i>
+                <span>Porto<span class="accent">Dev</span></span>
+            </a>
+            <div class="nav-toggle" id="navToggle">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#tentang" class="nav-link">Tentang</a></li>
-                <li><a href="#keahlian" class="nav-link">Keahlian</a></li>
-                <li><a href="#projek" class="nav-link">Projek</a></li>
-                <li><a href="#contact" class="nav-link">Kontak</a></li>
+                <li><a href="#home"      class="nav-link active">Home</a></li>
+                <li><a href="#tentang"   class="nav-link">Tentang</a></li>
+                <li><a href="#keahlian"  class="nav-link">Keahlian</a></li>
+                <li><a href="#projek"    class="nav-link">Projek</a></li>
+                <li><a href="#contact"   class="nav-link">Kontak</a></li>
             </ul>
         </div>
     </nav>
@@ -60,12 +71,17 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <div class="hero-badge"><i class="fas fa-circle"
-                        style="font-size:8px;animation:blink 1.5s infinite"></i> SMK Metland School &bull; Kelas 11 PPLG
-                    1</div>
-                <h1 class="hero-title"><span class="gradient-text">Muhammad Fakhri</span><br>Almer Dzaky</h1>
-                <p class="hero-desc">Web Developer &bull; UI/UX Designer &bull; Hardware Enthusiast<br><span
-                        id="typingSpan">Membangun pengalaman digital yang keren </span></p>
+                <div class="hero-badge">
+                    <i class="fas fa-circle" style="font-size:8px;animation:blink 1.5s infinite"></i>
+                    SMK Metland School &bull; Kelas 11 PPLG 1
+                </div>
+                <h1 class="hero-title">
+                    <span class="gradient-text">Muhammad Fakhri</span><br>Almer Dzaky
+                </h1>
+                <p class="hero-desc">
+                    Web Developer &bull; UI/UX Designer &bull; Hardware Enthusiast<br>
+                    <span id="typingSpan">Membangun pengalaman digital yang keren </span>
+                </p>
                 <div class="hero-buttons">
                     <a href="#projek" class="btn btn-primary"><i class="fas fa-eye"></i> Lihat Projek</a>
                     <a href="#contact" class="btn btn-secondary"><i class="fas fa-message"></i> Hubungi Saya</a>
@@ -73,8 +89,9 @@
             </div>
             <div class="hero-image">
                 <div class="image-wrapper">
-                    <div class="photo-circle" onclick="document.getElementById('photoInput').click()"
-                        title="Klik untuk upload foto">
+                    <div class="photo-circle"
+                         onclick="document.getElementById('photoInput').click()"
+                         title="Klik untuk upload foto">
                         <img id="heroPhoto" src="" alt="Foto Profil" style="display:none">
                         <div id="heroPH" style="display:flex;flex-direction:column;align-items:center;gap:10px">
                             <i class="fas fa-user photo-placeholder-icon"></i>
@@ -100,8 +117,9 @@
             <div class="tentang-grid">
                 <div class="tentang-foto glass-card fade-in">
                     <div>
-                        <div class="tentang-foto-circle" onclick="document.getElementById('photoInput2').click()"
-                            title="Klik untuk upload foto">
+                        <div class="tentang-foto-circle"
+                             onclick="document.getElementById('photoInput2').click()"
+                             title="Klik untuk upload foto">
                             <img id="tentangPhoto" src="" alt="Foto" style="display:none">
                             <div id="tentangPH" class="tf-placeholder">
                                 <i class="fas fa-camera"></i>
@@ -112,14 +130,16 @@
                                 <span>Ganti</span>
                             </div>
                         </div>
-                        <p style="text-align:center;font-size:.72rem;color:#475569;margin-top:.8rem">Klik untuk upload
-                            foto profil</p>
+                        <p style="text-align:center;font-size:.72rem;color:#475569;margin-top:.8rem">
+                            Klik untuk upload foto profil
+                        </p>
                     </div>
                 </div>
                 <div class="tentang-content glass-card fade-in fade-in-delay-1">
                     <h3>Halo! Saya Fakhri 🚀</h3>
                     <p>Siswa kelas 11 PPLG 1 di <strong>SMK Metland School</strong>. Suka banget belajar hal baru
-                        tentang <strong>web development</strong>, <strong>UI/UX design</strong>, dan <strong>hardware komputer</strong>.</p>
+                        tentang <strong>web development</strong>, <strong>UI/UX design</strong>, dan
+                        <strong>hardware komputer</strong>.</p>
                     <p>Portofolio ini saya bikin sendiri dari nol! Selain ngoding, saya juga suka:</p>
                     <ul class="hobi-list">
                         <li><i class="fas fa-shuttle-space"></i> Rakit PC gaming</li>
@@ -163,68 +183,95 @@
                     <div class="skill-icon"><i class="fas fa-microchip"></i></div>
                     <h3>Hardware & Tools</h3>
                     <p>Aktif rakit PC, paham komponen komputer, dan troubleshooting hardware dengan baik.</p>
-                    <div class="skill-tags"><span>Cisko Paket Tacer</span>
-                    </div>
+                    <div class="skill-tags"><span>Cisco Packet Tracer</span></div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- PROJEK -->
+    <!--
+        Perubahan di section ini:
+        - Setiap .projek-gambar TIDAK lagi pakai onclick di HTML.
+        - Event listener dipasang secara dinamis oleh initProjectPhotoUpload() di main.js
+          berdasarkan index urutan kartu (.projek-kartu ke-0, ke-1, dst.)
+        - Foto disimpan ke localStorage dengan kunci: photo_projek_0, photo_projek_1, ...
+        - Saat reload, loadSavedPhotos() otomatis memuat kembali semua foto.
+    -->
     <section id="projek" class="section">
         <div class="container">
             <div class="section-header fade-in">
                 <h2 class="section-title">Projek Terbaik</h2>
-                <p class="section-subtitle">Hasil kerja keras saya yang bisa kamu coba langsung</p>
+                <p class="section-subtitle">Hasil kerja keras saya yang bisa kamu coba langsung &mdash;
+                    <em style="font-size:.85em;opacity:.7">klik gambar untuk upload foto projek</em>
+                </p>
             </div>
             <div class="projek-grid">
+
+                <!-- Projek 0 -->
                 <div class="projek-kartu glass-card fade-in">
-                    <div class="projek-gambar"><i class="fas fa-image"></i>
+                    <div class="projek-gambar">
+                        <i class="fas fa-image"></i>
                         <div class="projek-label">Design Canva</div>
                     </div>
                     <div class="projek-teks">
                         <h3>Desain Kreatif Canva</h3>
                         <p>Poster, logo, dan desain promosi pakai Canva Pro. Full color theory & typography.</p>
                         <div class="projek-tech"><span>Canva</span><span>Design</span><span>Branding</span></div>
-                        <div class="projek-links"><a href="#" class="btn-link"><i class="fab fa-github"></i> GitHub</a><a
-                                href="#" class="btn-link"></a></div>
+                        <div class="projek-links">
+                            <a href="#" class="btn-link"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Projek 1 -->
                 <div class="projek-kartu glass-card fade-in fade-in-delay-1">
-                    <div class="projek-gambar"><i class="fas fa-shopping-cart"></i>
+                    <div class="projek-gambar">
+                        <i class="fas fa-shopping-cart"></i>
                         <div class="projek-label">Shopee Clone</div>
                     </div>
                     <div class="projek-teks">
-                        <h3> Tampilan Website Shopee Sederhana</h3>
+                        <h3>Tampilan Website Shopee Sederhana</h3>
                         <p>Layout e-commerce lengkap dengan product grid, cart, dan checkout. Fully responsive!</p>
-                        <div class="projek-tech"><span>HTML</span><span>CSS</span><span>Js</span></div>
-                        <div class="projek-links"><a href="#" class="btn-link"><i class="fab fa-github"></i>
-                                GitHub</a><a href="#" class="btn-link"></a></div>
+                        <div class="projek-tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
+                        <div class="projek-links">
+                            <a href="#" class="btn-link"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Projek 2 -->
                 <div class="projek-kartu glass-card fade-in fade-in-delay-2">
-                    <div class="projek-gambar"><i class="fas fa-bell"></i>
+                    <div class="projek-gambar">
+                        <i class="fas fa-bell"></i>
                         <div class="projek-label">School Bell</div>
                     </div>
                     <div class="projek-teks">
                         <h3>Sistem Bell Sekolah Digital</h3>
                         <p>Bell otomatis dengan timer dan suara custom. Bisa set jadwal pelajaran otomatis.</p>
                         <div class="projek-tech"><span>JavaScript</span></div>
-                        <div class="projek-links"><a href="#" class="btn-link"><i class="fab fa-github"></i>GitHub</a><a
-                                href="#" class="btn-link"></a></div>
+                        <div class="projek-links">
+                            <a href="#" class="btn-link"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Projek 3 -->
                 <div class="projek-kartu glass-card fade-in fade-in-delay-3">
-                    <div class="projek-gambar"><i class="fas fa-laptop"></i>
+                    <div class="projek-gambar">
+                        <i class="fas fa-laptop"></i>
                         <div class="projek-label">Electronics</div>
                     </div>
                     <div class="projek-teks">
                         <h3>Toko Alat Rumah Tangga Online</h3>
                         <p>Website jualan peralatan elektronik dengan filter harga, search, dan detail produk.</p>
-                        <div class="projek-tech"><span>Fiqma</div>
-                        <div class="projek-links"><a href="#" class="btn-link"></a><a href="#" class="btn-link"><i class="fab fa-github"></i> GitHub</a></div>
+                        <div class="projek-tech"><span>Figma</span></div>
+                        <div class="projek-links">
+                            <a href="#" class="btn-link"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -253,9 +300,7 @@
 
                     <div class="contact-cards">
                         <a href="mailto:fakhri@example.com" class="contact-card glass-card fade-in fade-in-delay-1">
-                            <div class="cc-icon email-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
+                            <div class="cc-icon email-icon"><i class="fas fa-envelope"></i></div>
                             <div class="cc-text">
                                 <span class="cc-label">Email</span>
                                 <span class="cc-value">fakhri@example.com</span>
@@ -263,9 +308,7 @@
                             <i class="fas fa-arrow-right cc-arrow"></i>
                         </a>
                         <a href="https://wa.me/628123456789" target="_blank" class="contact-card glass-card fade-in fade-in-delay-2">
-                            <div class="cc-icon wa-icon">
-                                <i class="fab fa-whatsapp"></i>
-                            </div>
+                            <div class="cc-icon wa-icon"><i class="fab fa-whatsapp"></i></div>
                             <div class="cc-text">
                                 <span class="cc-label">WhatsApp</span>
                                 <span class="cc-value">+62 812-3456-7890</span>
@@ -273,9 +316,7 @@
                             <i class="fas fa-arrow-right cc-arrow"></i>
                         </a>
                         <a href="#" class="contact-card glass-card fade-in fade-in-delay-3">
-                            <div class="cc-icon loc-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
+                            <div class="cc-icon loc-icon"><i class="fas fa-map-marker-alt"></i></div>
                             <div class="cc-text">
                                 <span class="cc-label">Lokasi</span>
                                 <span class="cc-value">SMK Metland School</span>
@@ -289,20 +330,16 @@
                         <p class="social-label">Temukan saya di:</p>
                         <div class="social-links-new">
                             <a href="https://instagram.com/YOUR_USERNAME" target="_blank" class="soc-btn insta">
-                                <i class="fab fa-instagram"></i>
-                                <span>Instagram</span>
+                                <i class="fab fa-instagram"></i><span>Instagram</span>
                             </a>
                             <a href="https://tiktok.com/@YOUR_USERNAME" target="_blank" class="soc-btn tiktok">
-                                <i class="fab fa-tiktok"></i>
-                                <span>TikTok</span>
+                                <i class="fab fa-tiktok"></i><span>TikTok</span>
                             </a>
                             <a href="https://facebook.com/YOUR_USERNAME" target="_blank" class="soc-btn fb">
-                                <i class="fab fa-facebook-f"></i>
-                                <span>Facebook</span>
+                                <i class="fab fa-facebook-f"></i><span>Facebook</span>
                             </a>
                             <a href="https://github.com/YOUR_USERNAME" target="_blank" class="soc-btn gh">
-                                <i class="fab fa-github"></i>
-                                <span>GitHub</span>
+                                <i class="fab fa-github"></i><span>GitHub</span>
                             </a>
                         </div>
                     </div>
@@ -339,10 +376,18 @@
                         <div class="form-group">
                             <label>Kategori Projek</label>
                             <div class="project-type-btns">
-                                <button class="type-btn active" onclick="selectType(this)"><i class="fab fa-html5"></i> Web Dev</button>
-                                <button class="type-btn" onclick="selectType(this)"><i class="fas fa-paint-brush"></i> UI/UX</button>
-                                <button class="type-btn" onclick="selectType(this)"><i class="fas fa-microchip"></i> Hardware</button>
-                                <button class="type-btn" onclick="selectType(this)"><i class="fas fa-ellipsis"></i> Lainnya</button>
+                                <button class="type-btn active" onclick="selectType(this)">
+                                    <i class="fab fa-html5"></i> Web Dev
+                                </button>
+                                <button class="type-btn" onclick="selectType(this)">
+                                    <i class="fas fa-paint-brush"></i> UI/UX
+                                </button>
+                                <button class="type-btn" onclick="selectType(this)">
+                                    <i class="fas fa-microchip"></i> Hardware
+                                </button>
+                                <button class="type-btn" onclick="selectType(this)">
+                                    <i class="fas fa-ellipsis"></i> Lainnya
+                                </button>
                             </div>
                         </div>
                         <div class="form-group">
@@ -355,7 +400,9 @@
                             <i class="fas fa-paper-plane"></i>
                             <span>Kirim Pesan</span>
                         </button>
-                        <div class="send-note"><i class="fas fa-shield-halved"></i> Pesan kamu aman, tidak akan di-spam!</div>
+                        <div class="send-note">
+                            <i class="fas fa-shield-halved"></i> Pesan kamu aman, tidak akan di-spam!
+                        </div>
                     </div>
                 </div>
             </div>
@@ -365,7 +412,7 @@
     <!-- FOOTER -->
     <footer class="footer-bottom-bar">
         <div class="container">
-            <p>&copy; 2025 <span class="accent">FakhriDev</span>. Dibuat dengan  baik dari nol.</p>
+            <p>&copy; 2025 <span class="accent">FakhriDev</span>. Dibuat dengan baik dari nol.</p>
         </div>
     </footer>
 
