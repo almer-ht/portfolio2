@@ -28,8 +28,8 @@ function showToast(msg, type = 'success') {
 
     const colors = {
         success: { bg: 'linear-gradient(135deg,#22c55e,#16a34a)', icon: '✅' },
-        error:   { bg: 'linear-gradient(135deg,#ef4444,#dc2626)', icon: '❌' },
-        info:    { bg: 'linear-gradient(135deg,#3b82f6,#2563eb)', icon: 'ℹ️'  },
+        error: { bg: 'linear-gradient(135deg,#ef4444,#dc2626)', icon: '❌' },
+        info: { bg: 'linear-gradient(135deg,#3b82f6,#2563eb)', icon: 'ℹ️' },
     };
     const { bg, icon } = colors[type] || colors.success;
 
@@ -114,7 +114,7 @@ function handlePhoto(event, imgId, phId, storageKey) {
  */
 function applyPhoto(imgId, phId, dataUrl) {
     const img = document.getElementById(imgId);
-    const ph  = document.getElementById(phId);
+    const ph = document.getElementById(phId);
     if (!img) return;
 
     img.src = dataUrl;
@@ -174,7 +174,7 @@ function applyProjectPhoto(index, dataUrl) {
 function uploadProjectPhoto(index) {
     // Buat input file sementara
     const input = document.createElement('input');
-    input.type  = 'file';
+    input.type = 'file';
     input.accept = 'image/*';
     input.onchange = function (e) {
         const file = e.target.files[0];
@@ -232,7 +232,7 @@ window.addEventListener('scroll', () => {
     const navbar = document.getElementById('navbar');
     const scrollTop = document.getElementById('scrollTop');
 
-    if (navbar)    navbar.classList.toggle('scrolled', window.scrollY > 50);
+    if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 50);
     if (scrollTop) scrollTop.classList.toggle('show', window.scrollY > 400);
 
     // Update active nav link
@@ -250,7 +250,7 @@ window.addEventListener('scroll', () => {
 // MOBILE NAV TOGGLE
 // =============================================
 const navToggle = document.getElementById('navToggle');
-const navLinks  = document.getElementById('navLinks');
+const navLinks = document.getElementById('navLinks');
 if (navToggle && navLinks) {
     navToggle.addEventListener('click', () => {
         navLinks.classList.toggle('open');
@@ -307,16 +307,6 @@ function typeEffect() {
 }
 typeEffect();
 
-// =============================================
-// WELCOME MODAL
-// =============================================
-function closeWelcome() {
-    const modal = document.getElementById('welcomeModal');
-    if (modal) {
-        modal.style.opacity = '0';
-        setTimeout(() => modal.style.display = 'none', 400);
-    }
-}
 // Auto close setelah 8 detik
 setTimeout(() => {
     const modal = document.getElementById('welcomeModal');
