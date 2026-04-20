@@ -126,15 +126,22 @@ function applyPhoto(imgId, phId, dataUrl) {
  * Muat semua foto tersimpan dari localStorage saat halaman dimuat.
  */
 function loadSavedPhotos() {
-    // Hero photo
-    const heroData = localStorage.getItem('photo_hero');
-    if (heroData) applyPhoto('heroPhoto', 'heroPH', heroData);
+    function applyFoto(imgId, phId, url) {
+        const img = document.getElementById(imgId);
+        const ph  = document.getElementById(phId);
+        if (img && url) {
+            img.removeAttribute('class');
+            img.onload = () => {
+                img.style.cssText = 'display:block!important;width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:50%;z-index:1;';
+            };
+            img.src = url;
+        }
+        if (ph && url) ph.style.display = 'none';
+    }
 
-    // Tentang photo
-    const tentangData = localStorage.getItem('photo_tentang');
-    if (tentangData) applyPhoto('tentangPhoto', 'tentangPH', tentangData);
+    applyFoto('heroPhoto',   'heroPH',    localStorage.getItem('photo_hero'));
+    applyFoto('tentangPhoto','tentangPH', localStorage.getItem('photo_tentang'));
 
-    // Project photos (0-based index sesuai jumlah kartu projek)
     document.querySelectorAll('.projek-kartu').forEach((_, i) => {
         const data = localStorage.getItem('photo_projek_' + i);
         if (data) applyProjectPhoto(i, data);
@@ -200,7 +207,7 @@ function uploadProjectPhoto(index) {
 function initProjectPhotoUpload() {
     document.querySelectorAll('.projek-gambar').forEach((el, i) => {
         el.style.cursor = 'pointer';
-        el.title = 'Klik untuk upload foto projek';
+        el.title = 'Klik untuk upload foto projek (semua format didukung)';
 
         // Pastikan posisi relatif untuk overlay & img
         el.style.position = 'relative';
