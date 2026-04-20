@@ -17,8 +17,8 @@
         Perubahan: tambahkan storageKey sebagai argumen ke-4 pada handlePhoto()
         supaya foto disimpan ke localStorage dengan kunci yang berbeda.
     -->
-    <input type="file" id="photoInput" accept="image/*" onchange="handlePhoto(event,'heroPhoto','heroPH','photo_hero')">
-    <input type="file" id="photoInput2" accept="image/*"
+    <input type="file" id="photoInput" accept="image/*,.heic,.heif,.avif,.bmp,.tiff,.tif,.webp" onchange="handlePhoto(event,'heroPhoto','heroPH','photo_hero')">
+    <input type="file" id="photoInput2" accept="image/*,.heic,.heif,.avif,.bmp,.tiff,.tif,.webp"
         onchange="handlePhoto(event,'tentangPhoto','tentangPH','photo_tentang')">
 
     <!-- SCROLL TOP -->
@@ -70,7 +70,7 @@
                 <div class="image-wrapper">
                     <div class="photo-circle" onclick="document.getElementById('photoInput').click()"
                         title="Klik untuk upload foto">
-                        <img id="heroPhoto" src="" alt="Foto Profil" style="display:none">
+                        <img id="heroPhoto" src="" alt="Foto Profil" class="photo-hidden">
                         <div id="heroPH" style="display:flex;flex-direction:column;align-items:center;gap:10px">
                             <i class="fas fa-user photo-placeholder-icon"></i>
                             <span class="photo-hint">Klik untuk upload foto</span>
@@ -97,7 +97,7 @@
                     <div>
                         <div class="tentang-foto-circle" onclick="document.getElementById('photoInput2').click()"
                             title="Klik untuk upload foto">
-                            <img id="tentangPhoto" src="" alt="Foto" style="display:none">
+                            <img id="tentangPhoto" src="" alt="Foto" class="photo-hidden">
                             <div id="tentangPH" class="tf-placeholder">
                                 <i class="fas fa-camera"></i>
                                 <span>Upload foto</span>
@@ -278,11 +278,11 @@
                     </div>
 
                     <div class="contact-cards">
-                        <a href="mailto:fakhri@example.com" class="contact-card glass-card fade-in fade-in-delay-1">
+                        <a href="mailto:almerazzam19@gmail.com" class="contact-card glass-card fade-in fade-in-delay-1">
                             <div class="cc-icon email-icon"><i class="fas fa-envelope"></i></div>
                             <div class="cc-text">
                                 <span class="cc-label">Email</span>
-                                <span class="cc-value">fakhri@example.com</span>
+                                <span class="cc-value">almerazzam19@gmail.com</span>
                             </div>
                             <i class="fas fa-arrow-right cc-arrow"></i>
                         </a>
@@ -335,14 +335,14 @@
                                 <label>Nama Lengkap</label>
                                 <div class="input-wrap">
                                     <i class="fas fa-user"></i>
-                                    <input type="text" placeholder="Nama kamu...">
+                                    <input type="text" id="contactNama" placeholder="Nama kamu...">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
                                 <div class="input-wrap">
                                     <i class="fas fa-envelope"></i>
-                                    <input type="email" placeholder="email@kamu.com">
+                                    <input type="email" id="contactEmail" placeholder="email@kamu.com">
                                 </div>
                             </div>
                         </div>
@@ -350,12 +350,12 @@
                             <label>Subjek</label>
                             <div class="input-wrap">
                                 <i class="fas fa-tag"></i>
-                                <input type="text" placeholder="Tentang apa nih?">
+                                <input type="text" id="contactSubjek" placeholder="Tentang apa nih?">
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Kategori Projek</label>
-                            <div class="project-type-btns">
+                            <div class="project-type-btns" id="typeBtns">
                                 <button class="type-btn active" onclick="selectType(this)">
                                     <i class="fab fa-html5"></i> Web Dev
                                 </button>
@@ -373,7 +373,7 @@
                         <div class="form-group">
                             <label>Pesan</label>
                             <div class="textarea-wrap">
-                                <textarea placeholder="Ceritain projek kamu di sini... " rows="5"></textarea>
+                                <textarea id="contactPesan" placeholder="Ceritain projek kamu di sini... " rows="5"></textarea>
                             </div>
                         </div>
                         <button class="btn-send" onclick="sendMessage()">
@@ -398,18 +398,178 @@
 
     <script src="main.js"></script>
     <script>
+        // =============================================
+        // CLOUDINARY — sudah terpasang
+        // =============================================
+        const CLOUDINARY_CLOUD_NAME = 'dlr22ka5e';
+        const CLOUDINARY_PRESET     = 'ml_default';
+        const OWNER_EMAIL           = 'almerazzam19@gmail.com';
+
+        // =============================================
+        // KATEGORI PROJEK
+        // =============================================
         function selectType(btn) {
             document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
         }
+
+        // =============================================
+        // KIRIM PESAN → buka Gmail otomatis
+        // =============================================
         function sendMessage() {
-            const btn = document.querySelector('.btn-send');
-            btn.innerHTML = '<i class="fas fa-check"></i> <span>Terkirim!</span>';
+            const nama     = document.getElementById('contactNama').value.trim();
+            const email    = document.getElementById('contactEmail').value.trim();
+            const subjek   = document.getElementById('contactSubjek').value.trim();
+            const pesan    = document.getElementById('contactPesan').value.trim();
+            const kategori = document.querySelector('.type-btn.active')?.textContent.trim() || '-';
+            const btn      = document.querySelector('.btn-send');
+
+            if (!nama || !email || !pesan) { showToast('Nama, email, dan pesan wajib diisi!', 'error'); return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showToast('Format email tidak valid!', 'error'); return; }
+
+            const subject = encodeURIComponent((subjek || 'Pesan dari Portofolio') + ' [' + kategori + ']');
+            const body    = encodeURIComponent('Halo Fakhri!\n\nNama    : ' + nama + '\nEmail   : ' + email + '\nKategori: ' + kategori + '\n\nPesan:\n' + pesan + '\n\n---\nDikirim dari portofolio FakhriDev');
+
+            window.open('https://mail.google.com/mail/?view=cm&to=' + OWNER_EMAIL + '&su=' + subject + '&body=' + body, '_blank');
+
+            btn.innerHTML = '<i class="fas fa-check"></i> <span>Gmail Terbuka!</span>';
             btn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+            showToast('Gmail terbuka! Tinggal klik Send. 📧', 'success');
             setTimeout(() => {
+                document.getElementById('contactNama').value   = '';
+                document.getElementById('contactEmail').value  = '';
+                document.getElementById('contactSubjek').value = '';
+                document.getElementById('contactPesan').value  = '';
                 btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span>Kirim Pesan</span>';
                 btn.style.background = '';
             }, 3000);
+        }
+
+        // =============================================
+        // KONVERSI GAMBAR → JPEG via canvas
+        // =============================================
+        function convertToJpeg(file) {
+            return new Promise((resolve, reject) => {
+                const url = URL.createObjectURL(file);
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    const MAX = 1200;
+                    let w = img.width, h = img.height;
+                    if (w > MAX || h > MAX) {
+                        if (w > h) { h = Math.round(h * MAX / w); w = MAX; }
+                        else       { w = Math.round(w * MAX / h); h = MAX; }
+                    }
+                    canvas.width = w; canvas.height = h;
+                    canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                    URL.revokeObjectURL(url);
+                    canvas.toBlob(
+                        blob => blob ? resolve(blob) : reject(new Error('Konversi gagal')),
+                        'image/jpeg', 0.88
+                    );
+                };
+                img.onerror = () => reject(new Error('Gagal load gambar'));
+                img.src = url;
+            });
+        }
+
+        // =============================================
+        // UPLOAD KE CLOUDINARY → dapat URL permanen
+        // =============================================
+        async function uploadToCloud(file) {
+            const jpeg = await convertToJpeg(file);
+            const form = new FormData();
+            form.append('file', jpeg, 'photo.jpg');
+            form.append('upload_preset', CLOUDINARY_PRESET);
+            form.append('folder', 'portofolio_fakhri');
+            const res  = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, {
+                method: 'POST', body: form
+            });
+            if (!res.ok) throw new Error('Upload gagal: ' + res.status);
+            const data = await res.json();
+            console.log('Cloudinary response:', data);
+            if (!data.secure_url) throw new Error('URL tidak ditemukan');
+            return data.secure_url;
+        }
+
+        // =============================================
+        // TAMPILKAN FOTO KE ELEMEN IMG
+        // =============================================
+        function showFoto(imgId, phId, url) {
+            const img = document.getElementById(imgId);
+            const ph  = document.getElementById(phId);
+            if (!img || !url) return;
+            img.src = url;
+            img.style.cssText = 'display:block!important;width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:50%;z-index:1;';
+            if (ph) ph.style.display = 'none';
+        }
+
+        // =============================================
+        // HANDLE FOTO PROFIL (hero & tentang)
+        // =============================================
+        async function handlePhoto(event, imgId, phId, storageKey) {
+            const file = event.target.files[0];
+            if (!file) return;
+            event.target.value = '';
+            showToast('Mengupload foto... ⏳', 'info');
+            try {
+                const url = await uploadToCloud(file);
+                localStorage.setItem(storageKey, url);
+                showFoto(imgId, phId, url);
+                showToast('Foto tersimpan & cross-platform! 📸', 'success');
+            } catch (err) {
+                console.error('Upload error:', err);
+                // Fallback base64
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    localStorage.setItem(storageKey, e.target.result);
+                    showFoto(imgId, phId, e.target.result);
+                    showToast('Upload gagal, foto disimpan lokal saja.', 'info');
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // =============================================
+        // HANDLE FOTO PROJEK
+        // =============================================
+        async function uploadProjectPhoto(index) {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*,.heic,.heif,.avif,.bmp,.tiff,.tif,.webp';
+            input.onchange = async function(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+                const storageKey = 'photo_projek_' + index;
+                showToast('Mengupload foto projek... ⏳', 'info');
+
+                const applyUrl = (url) => {
+                    localStorage.setItem(storageKey, url);
+                    const gambar = document.querySelectorAll('.projek-gambar')[index];
+                    if (!gambar) return;
+                    let img = gambar.querySelector('.projek-img-upload');
+                    if (!img) {
+                        img = document.createElement('img');
+                        img.className = 'projek-img-upload';
+                        gambar.appendChild(img);
+                    }
+                    img.src = url;
+                    img.style.cssText = 'display:block!important;width:100%;height:100%;object-fit:cover;border-radius:inherit;position:absolute;top:0;left:0;z-index:1;';
+                    gambar.querySelectorAll(':scope > i').forEach(i => i.style.display = 'none');
+                };
+
+                try {
+                    const url = await uploadToCloud(file);
+                    applyUrl(url);
+                    showToast('Foto projek ke-' + (index + 1) + ' tersimpan! 🖼️', 'success');
+                } catch (err) {
+                    console.error('Upload projek error:', err);
+                    const reader = new FileReader();
+                    reader.onload = (ev) => { applyUrl(ev.target.result); showToast('Upload gagal, disimpan lokal.', 'info'); };
+                    reader.readAsDataURL(file);
+                }
+            };
+            input.click();
         }
     </script>
 </body>
